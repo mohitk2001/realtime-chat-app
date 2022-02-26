@@ -1,0 +1,20 @@
+import React from 'react'
+import Join from "./Components/Join/Join"
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+function App() {
+  return (
+    <div>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Join/>}/>
+      </Routes>
+    </BrowserRouter>
+    </div>
+  )
+}
+
+export default App
