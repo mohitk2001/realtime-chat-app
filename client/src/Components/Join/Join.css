@@ -9,7 +9,7 @@
 .join_chat_container{
     width: 60%;
     margin: auto;
-    border: 2px solid skyblue;
+    border: 2px solid purple;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@
 .join_chat_container>input{
     background: transparent;
     border: none;
-    border-bottom: 2px solid skyblue;
+    border-bottom: 2px solid purple;
     margin-top: 10px;
     margin-bottom: 20px;
     outline: none;

@@ -1,0 +1,35 @@
+.online_comp{
+    height: 100%;
+    width: 30%;
+    margin-top: 50px;
+    border: 2px solid purple;
+}
+
+.online_top{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    background-color: purple;
+}
+.online_icon{
+    height: 2vw;
+    width: 2vw;
+    background-color: greenyellow;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.online_list{
+    width: 100%;
+    height: 90%;
+}
+.online_list>p{
+    margin-top: 5px;
+    font-size: 2vw;
+    text-align: center;
+    background-color: rgb(80, 34, 80);
+}
+.scroller{
+    height: 90%;
+}

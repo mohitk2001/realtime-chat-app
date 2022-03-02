@@ -1,0 +1,53 @@
+.box_comp{
+    width:50%;
+    border:2px solid purple;
+    height: 100%;
+    margin-top: 60px;
+}
+
+.box_top{
+    display: flex;
+    align-items: center;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    background-color: purple;
+    height: 20%;
+}
+.box_top>img{
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-right: 2vw;
+    margin-left: 2vw;
+}
+
+.box_message_container{
+    height: 70%;
+    width: 100%;
+}
+.box_text_input{
+    height: 10%;
+    width: 100%;
+}
+
+.box_text_input>input{
+    width: 80%;
+    background-color: rgb(252, 240, 252);
+    outline: none;
+    border: none;
+    height: 95%;
+    font-size: 2vw;
+}
+.box_text_input>button{
+    width: 20%;
+    height: 100%;
+    font-size: 2vw;
+    border: none;
+    outline: none;
+    color: whitesmoke;
+    background-color: purple;
+}
+.msg_scroller{
+    height: 70%;
+}

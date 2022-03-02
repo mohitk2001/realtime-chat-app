@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Join from "./Components/Join/Join"
 import {
   BrowserRouter,
@@ -6,6 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import Chat from './Components/Chat/Chat';
+
 function App() {
   return (
     <div>
