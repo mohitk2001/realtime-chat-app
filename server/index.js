@@ -4,7 +4,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const server = http.createServer(app);
-const {addUser}=require("./user")
+const {addUser,getUser,leftUser}=require("./user")
 const io = new Server(server, {
   cors: {
     methods: ["GET", "POST"],
@@ -26,13 +26,19 @@ io.on("connection", (socket) => {
         return callback(error);
       }
       else{
-        console.log(users)
-      }
         socket.join(room);
-        socket.broadcast.to(room).emit("used-joined", { joinedText:`${name} has joined ` });
+        socket.emit("Welcome",{Text:` Welcome to room ${name} `})
+        socket.broadcast.to(room).emit("user-joined", { Text:`${name} has joined ` });
+        io.to(room).emit("specificRoomData",{usersList:getUser(room)})
+      }
   });
   socket.on("disconnect", () => {
     console.log("User disconnected");
+    const user=leftUser(socket.id);
+    if(user){
+      io.to(user.room).emit("left",{Text:`${user.name} has left chat`})
+      io.to(user.room).emit("specificRoomData",{usersList:getUser(user.room)})
+    }
   });
 });
 

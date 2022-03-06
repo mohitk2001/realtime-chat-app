@@ -1,8 +1,20 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import "./Online.css"
 import ScrollToBottom from 'react-scroll-to-bottom';
-function Online() {
-    const list=["Yash","mohit","rohit","sumit","aakash","rohit","sumit","aakash","rohit","sumit","aakash"];
+function Online({list}) {
+   
+    
+    // useEffect(() => {
+    //   socket.on();
+    //   
+    //   socket.on("left",(data)=>{
+    //    console.log(data)
+    // })
+    // //  return ()=>{
+    // //      socket.off()
+    // //     };
+    // }, [onlineUser,socket])
+    
   return (
     <div className='online_comp'>
         <div className="online_top">
@@ -13,7 +25,7 @@ function Online() {
        <div className="online_list">
             {
                 list.map((user,index)=>{
-                    return (<p key={index}>{user}</p>)
+                    return (<p key={index}>{user.name}</p>)
                 })
             }
         </div>

@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react'
 import "./Chat.css"
 import io  from "socket.io-client";
 import Box from '../Box/Box';
-import Online from "../Box/Online"
+
 const socket=io("http://localhost:8001")
 
 function Chat() {
@@ -18,7 +18,7 @@ function Chat() {
   return (
     <div className='chat_comp'>
       <Box socket={socket}/>
-      <Online socket={socket}/>
+      
     </div>
   )
 }

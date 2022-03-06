@@ -13,5 +13,13 @@ const addUser=({id,name,room})=>{
     users.push(user);
     return {users};
 }
+const getUser=(room)=>{
+    return users.filter((user)=>user.room===room);
+}
 
-module.exports={addUser}
+const leftUser=(id)=>{
+    const findIndex=users.findIndex((user)=>user.id===id);
+    if(findIndex !== -1) return users.splice(findIndex, 1)[0];
+}
+
+module.exports={addUser,getUser,leftUser}
