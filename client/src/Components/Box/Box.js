@@ -8,6 +8,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 function Box({ socket }) {
   let [params] = useSearchParams();
   const [message, setmessageList] = useState([]);
+  const [personText, setpersonText] = useState("");
   let navigate = useNavigate();
   const [onlineUser, setonlineUser] = useState([]);
   useEffect(() => {
@@ -26,25 +27,39 @@ function Box({ socket }) {
   useEffect(() => {
     socket.on("user-joined", (data) => {
       console.log(data);
-      setmessageList([...message, data.Text]);
+      setmessageList([...message, data]);
     });
     socket.on("Welcome", (data) => {
       console.log(data);
-      setmessageList([...message, data.Text]);
+      setmessageList([...message, data]);
     });
     socket.on("left", (data) => {
       console.log(data);
-      setmessageList([...message, data.Text]);
+      setmessageList([...message, data]);
     });
     socket.on("specificRoomData", (data) => {
       console.log(data);
       setonlineUser(data.usersList);
     });
+
+    socket.on("receiveMsg",(data)=>{
+      console.log(data);
+      setmessageList([...message,data])
+    })
     return () => {
       socket.off();
     };
   }, [message]);
 
+  console.log(message)
+
+  const sendMessage=()=>{
+    console.log(personText);
+    
+    socket.emit("sendMessage",{sentMessage:personText})
+    setpersonText("");
+
+  }
   return (
     <div className="reassign">
       <div className="box_comp">
@@ -57,17 +72,23 @@ function Box({ socket }) {
         </div>
         <ScrollToBottom className="msg_scroller">
           <div className="box_message_container">
-            <div className="msg_left">
+            
               {message?.map((msg, index) => {
-                return <p key={index}>{msg}</p>;
+                return (
+                  <div className="msg_left" key={index}>
+                  {
+                    <p>Hi</p>
+                  }
+                  </div>
+                )
               })}
-            </div>
-            <div className="msg_right">right</div>
+           
+           
           </div>
         </ScrollToBottom>
         <div className="box_text_input">
-          <input type="text" />
-          <button>Send</button>
+          <input type="text" onChange={e=>setpersonText(e.target.value)} value={personText} onKeyDown={e=>e.key==="Enter" ? sendMessage() :""}/>
+          <button onClick={sendMessage}>Send</button>
         </div>
       </div>
       <Online list={onlineUser}/>

@@ -1,20 +1,8 @@
-import React,{useEffect,useState} from 'react'
+import React from 'react'
 import "./Online.css"
 import ScrollToBottom from 'react-scroll-to-bottom';
 function Online({list}) {
-   
-    
-    // useEffect(() => {
-    //   socket.on();
-    //   
-    //   socket.on("left",(data)=>{
-    //    console.log(data)
-    // })
-    // //  return ()=>{
-    // //      socket.off()
-    // //     };
-    // }, [onlineUser,socket])
-    
+
   return (
     <div className='online_comp'>
         <div className="online_top">
