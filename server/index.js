@@ -4,7 +4,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const server = http.createServer(app);
-const {addUser,getUser,leftUser}=require("./user")
+const {addUser,getUser,leftUser,getUserByID}=require("./user")
 const io = new Server(server, {
   cors: {
     methods: ["GET", "POST"],
@@ -27,16 +27,24 @@ io.on("connection", (socket) => {
       }
       else{
         socket.join(room);
-        socket.emit("Welcome",{Text:` Welcome to room ${name} `})
-        socket.broadcast.to(room).emit("user-joined", { Text:`${name} has joined ` });
+        socket.emit("Welcome",{Text:` Welcome to room ${name} `,User:{id:socket.id,name,room}})
+        socket.broadcast.to(room).emit("user-joined", { Text:`${name} has joined `,User:{id:socket.id,name,room} });
         io.to(room).emit("specificRoomData",{usersList:getUser(room)})
       }
   });
+
+  socket.on("sendMessage",(data)=>{
+    const user=getUserByID(socket.id);
+    console.log(data.sentMessage);
+    socket.to(user.room).emit("receiveMsg",{Text:data.sentMessage,User:user})
+  
+  })
+
   socket.on("disconnect", () => {
     console.log("User disconnected");
     const user=leftUser(socket.id);
     if(user){
-      io.to(user.room).emit("left",{Text:`${user.name} has left chat`})
+      io.to(user.room).emit("left",{Text:`${user.name} has left chat`,User:user})
       io.to(user.room).emit("specificRoomData",{usersList:getUser(user.room)})
     }
   });
