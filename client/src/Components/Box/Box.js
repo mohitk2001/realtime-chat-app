@@ -18,32 +18,32 @@ function Box({ socket }) {
       params.get("room"),
       (error) => {
         if (error) {
-          console.log(error);
-          //navigate("/")
+          alert(error);
+          navigate("/")
         }
       }
     );
   }, []);
   useEffect(() => {
     socket.on("user-joined", (data) => {
-      console.log(data);
+     // console.log(data);
       setmessageList([...message, data]);
     });
     socket.on("Welcome", (data) => {
-      console.log(data);
+     // console.log(data);
       setmessageList([...message, data]);
     });
     socket.on("left", (data) => {
-      console.log(data);
+      //console.log(data);
       setmessageList([...message, data]);
     });
     socket.on("specificRoomData", (data) => {
-      console.log(data);
+     // console.log(data);
       setonlineUser(data.usersList);
     });
 
     socket.on("receiveMsg",(data)=>{
-      console.log(data);
+    //  console.log(data);
       setmessageList([...message,data])
     })
     return () => {
@@ -51,10 +51,10 @@ function Box({ socket }) {
     };
   }, [message]);
 
-  console.log(message)
+  
 
   const sendMessage=()=>{
-    console.log(personText);
+    //console.log(personText);
     
     socket.emit("sendMessage",{sentMessage:personText})
     setmessageList([...message,{Text:personText,id:"Me"}])
@@ -64,6 +64,7 @@ function Box({ socket }) {
   }
   return (
     <div className="reassign">
+      <a href="/" className="btn btn-danger mt-5">Exit</a>
       <div className="box_comp">
         <div className="box_top">
           <img
@@ -80,7 +81,6 @@ function Box({ socket }) {
                   return (
                     <div className="msg_right" key={index}>
                     <p>{msg.Text}</p>
-                    {!msg.User?"" :<h5 className="user_name">{msg.id}</h5>}
                     </div>
                   )
                 }
@@ -88,7 +88,7 @@ function Box({ socket }) {
                 return (
                   <div className="msg_left" key={index}>
                   <p>{msg.Text}</p>
-                  {!msg.User?"":<h5 className="user_name">{msg.User.name}</h5>}
+                  {!msg.User?"":<h5 className="user_name">~ {msg.User.name}</h5>}
                   </div>
                 )
               })}

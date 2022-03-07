@@ -33,3 +33,26 @@
 .scroller{
     height: 90%;
 }
+
+@media screen and (max-width: 450px){
+    .online_top>h2{
+        font-size: 15px;
+        margin-left: 10px;
+    }
+    .online_comp{
+        
+        width:60%;
+        margin-top: 20px;
+       
+    }
+    .online_icon{
+        border-radius: 50%;
+        margin-right: 0px;
+        margin-left: 5px;
+    }
+    .online_list>p{
+        font-size: 15px;
+        text-align:start;
+        background-color: rgb(80, 34, 80);
+    }
+}
