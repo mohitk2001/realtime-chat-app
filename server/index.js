@@ -27,8 +27,8 @@ io.on("connection", (socket) => {
       }
       else{
         socket.join(room);
-        socket.emit("Welcome",{Text:` Welcome to room ${name} `,User:{id:socket.id,name,room}})
-        socket.broadcast.to(room).emit("user-joined", { Text:`${name} has joined `,User:{id:socket.id,name,room} });
+        socket.emit("Welcome",{Text:` Welcome to room ${name} `})
+        socket.broadcast.to(room).emit("user-joined", { Text:`${name} has joined `, });
         io.to(room).emit("specificRoomData",{usersList:getUser(room)})
       }
   });
@@ -44,7 +44,7 @@ io.on("connection", (socket) => {
     console.log("User disconnected");
     const user=leftUser(socket.id);
     if(user){
-      io.to(user.room).emit("left",{Text:`${user.name} has left chat`,User:user})
+      io.to(user.room).emit("left",{Text:`${user.name} has left chat`,})
       io.to(user.room).emit("specificRoomData",{usersList:getUser(user.room)})
     }
   });
