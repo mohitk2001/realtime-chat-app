@@ -3,7 +3,7 @@ import "./Chat.css"
 import io  from "socket.io-client";
 import Box from '../Box/Box';
 
-const socket=io("http://localhost:8001")
+const socket=io("https://socket-app-io.herokuapp.com")
 
 function Chat() {
    // let [params]=useSearchParams();
