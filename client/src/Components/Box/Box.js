@@ -57,6 +57,8 @@ function Box({ socket }) {
     console.log(personText);
     
     socket.emit("sendMessage",{sentMessage:personText})
+    setmessageList([...message,{Text:personText,id:"Me"}])
+
     setpersonText("");
 
   }
@@ -74,11 +76,19 @@ function Box({ socket }) {
           <div className="box_message_container">
             
               {message?.map((msg, index) => {
+                if(msg.id){
+                  return (
+                    <div className="msg_right" key={index}>
+                    <p>{msg.Text}</p>
+                    {!msg.User?"" :<h5 className="user_name">{msg.id}</h5>}
+                    </div>
+                  )
+                }
+                else
                 return (
                   <div className="msg_left" key={index}>
-                  {
-                    <p>Hi</p>
-                  }
+                  <p>{msg.Text}</p>
+                  {!msg.User?"":<h5 className="user_name">{msg.User.name}</h5>}
                   </div>
                 )
               })}

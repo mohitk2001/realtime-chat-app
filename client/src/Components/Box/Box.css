@@ -62,3 +62,36 @@
 .msg_scroller{
     height: 70%;
 }
+
+.msg_left{
+    background-color: gray;
+    border-radius: 5px;
+    margin-left: 10px;
+    float: left;
+    display: flex;
+    word-break: break-all;
+    width: 50%;
+    flex-direction: column;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.msg_right{
+    background-color: purple;
+    border-radius: 5px;
+    margin-right: 10px;
+    float: right;
+    display: flex;
+    word-break: break-all;
+    width: 50%;
+    flex-direction: column;
+    margin-top: 10px;
+    padding-right: 10px;
+    padding-left: 5px;
+}
+
+.user_name{
+    align-self: flex-end;
+    font-size: 0.9vw;
+    padding-right: 1vw;
+}
